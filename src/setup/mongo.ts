@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import colors from "colors";
+import "colors";
 
 interface MongoConfig {
     database: string;
@@ -58,10 +58,10 @@ export default class SetupMongo {
     }
 
     async clearCollections(): Promise<void> {
-        const collections: Record<string, mongoose.Collection> | undefined | any = mongoose.connection.collections;
+        const collections: Record<string, mongoose.Collection> = mongoose.connection.collections;
 
         for (const key in collections) {
-            const collection: mongoose.Collection = collections[key];
+            const collection = collections[key];
             if (!collection) continue;
             try {
                 await collection.deleteMany();
